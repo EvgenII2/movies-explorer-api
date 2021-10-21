@@ -63,7 +63,7 @@ module.exports.deleteMovie = (req, res, next) => {
       } else if (!movie.owner.equals(req.user._id)) {
         next(new ForbiddenError('Нет прав на удаление'));
       } else {
-        Movie.deleteOne(movie)
+        Movie.deleteOne(`${movie._id} deleted`)
           .then(() => {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');

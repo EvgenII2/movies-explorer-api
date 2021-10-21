@@ -11,7 +11,7 @@ router.get('/', getMovies);
 router.delete('/:id',
   celebrate({
     params: Joi.object().keys({
-      id: Joi.number().required(),
+      id: Joi.string().required().length(24).hex(),
     }),
   }), deleteMovie);
 router.post('/',
@@ -25,7 +25,7 @@ router.post('/',
       image: Joi.string().required().pattern(new RegExp(regexHTTP)),
       trailer: Joi.string().required().pattern(new RegExp(regexHTTP)),
       thumbnail: Joi.string().required().pattern(new RegExp(regexHTTP)),
-      movieId: Joi.number().integer().required(),
+      movieId: Joi.number().required(),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
     }),

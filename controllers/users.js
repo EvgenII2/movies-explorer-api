@@ -26,7 +26,7 @@ module.exports.getUser = (req, res, next) => {
     });
 };
 
-module.exports.updateProfile = (req, res, next) => {
+module.exports.editUser = (req, res, next) => {
   const { name, email } = req.body;
   User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
     .then((user) => {
