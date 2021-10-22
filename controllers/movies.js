@@ -6,8 +6,6 @@ const NotFoundError = require('../utils/errors/NotFoundError');
 module.exports.getMovies = (req, res, next) => {
   Movie.find({})
     .then((movies) => {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
       res.send(movies);
     })
     .catch(next);
@@ -43,15 +41,12 @@ module.exports.createMovie = (req, res, next) => {
     owner,
   })
     .then((movie) => {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
       res.send(movie);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Неккоректные данные'));
-      }
-      next(err);
+      } else next(err);
     });
 };
 
@@ -65,9 +60,10 @@ module.exports.deleteMovie = (req, res, next) => {
       } else {
         Movie.deleteOne(movie)
           .then(() => {
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-            res.send(movie);
+            res.send(`${movie} deleted`);
+          })
+          .catch((err) => {
+            next(err);
           });
       }
     })
