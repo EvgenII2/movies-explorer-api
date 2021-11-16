@@ -14,16 +14,16 @@ module.exports.getMovies = (req, res, next) => {
 module.exports.createMovie = (req, res, next) => {
   const {
     country,
+    description,
     director,
     duration,
-    year,
-    description,
-    image,
-    trailer,
-    thumbnail,
     id,
-    nameRU,
+    image,
     nameEN,
+    nameRU,
+    thumbnail,
+    trailer,
+    year,
   } = req.body;
   const owner = req.user._id;
   Movie.create({
