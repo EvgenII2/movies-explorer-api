@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const { regexHTTP } = require('../utils/constants');
+// const { regexHTTP } = require('../utils/constants');
 const {
   getMovies,
   createMovie,
@@ -23,7 +23,7 @@ router.post('/movies/',
       year: Joi.string().required(),
       description: Joi.string().required(),
       image: Joi.string().required(),
-      trailer: Joi.string().required().pattern(new RegExp(regexHTTP)),
+      trailer: Joi.string().required(),
       thumbnail: Joi.string().required(),
       id: Joi.number().required(),
       nameRU: Joi.string().required(),
