@@ -21,7 +21,7 @@ module.exports.createMovie = (req, res, next) => {
     image,
     trailer,
     thumbnail,
-    movieId,
+    id,
     nameRU,
     nameEN,
   } = req.body;
@@ -35,7 +35,7 @@ module.exports.createMovie = (req, res, next) => {
     image,
     trailer,
     thumbnail,
-    movieId,
+    id,
     nameRU,
     nameEN,
     owner,
@@ -45,7 +45,7 @@ module.exports.createMovie = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Неккоректные данные'));
+        next(new BadRequestError('Неккоректные данные', err));
       } else next(err);
     });
 };
