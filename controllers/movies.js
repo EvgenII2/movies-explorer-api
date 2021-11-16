@@ -45,7 +45,7 @@ module.exports.createMovie = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Неккоректные данные'));
+        next(new BadRequestError('Неккоректные данные', err));
       } else next(err);
     });
 };
