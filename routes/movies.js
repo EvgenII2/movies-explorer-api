@@ -8,7 +8,7 @@ const {
 } = require('../controllers/movies');
 
 router.get('/movies/', getMovies);
-router.delete('/movies/id',
+router.delete('/movies/:id',
   celebrate({
     params: Joi.object().keys({
       id: Joi.string().required().length(24).hex(),
